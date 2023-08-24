@@ -11,6 +11,7 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
@@ -192,14 +193,25 @@ object Form1: TForm1
         TabOrder = 1
         OnClick = BitBtn4Click
       end
-      object BitBtn5: TBitBtn
+      object BitBtn6: TBitBtn
         Left = 0
         Top = 0
         Width = 101
         Height = 35
         Align = alLeft
         Caption = '&Relat'#243'rio'
-        TabOrder = 4
+        TabOrder = 5
+        OnClick = BitBtn6Click
+      end
+      object BitBtn5: TBitBtn
+        Left = 101
+        Top = 0
+        Width = 101
+        Height = 35
+        Align = alLeft
+        Caption = '&Importar'
+        TabOrder = 6
+        Visible = False
         OnClick = BitBtn5Click
       end
     end
@@ -290,11 +302,24 @@ object Form1: TForm1
         ParentFont = False
       end
       object Label4: TLabel
-        Left = 739
+        Left = 743
         Top = 15
         Width = 55
         Height = 16
         Caption = 'ESTADO:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label8: TLabel
+        Left = 1007
+        Top = 15
+        Width = 78
+        Height = 16
+        Caption = 'DESCRI'#199#195'O:'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -317,14 +342,14 @@ object Form1: TForm1
         Width = 164
         Height = 21
         CharCase = ecUpperCase
-        TabOrder = 1
+        TabOrder = 5
       end
       object cbStatus: TComboBox
         Left = 213
-        Top = 85
+        Top = 86
         Width = 217
         Height = 21
-        TabOrder = 2
+        TabOrder = 6
         Items.Strings = (
           'E-MAIL'
           'ESC.CONTABILIDADE'
@@ -338,7 +363,7 @@ object Form1: TForm1
         Width = 217
         Height = 21
         CharCase = ecUpperCase
-        TabOrder = 3
+        TabOrder = 1
       end
       object edCidade: TEdit
         Left = 485
@@ -346,25 +371,32 @@ object Form1: TForm1
         Width = 217
         Height = 21
         CharCase = ecUpperCase
-        TabOrder = 4
+        TabOrder = 2
       end
       object cbContatado: TComboBox
         Left = 485
-        Top = 85
+        Top = 86
         Width = 217
         Height = 21
-        TabOrder = 5
+        TabOrder = 7
         Items.Strings = (
           'LIGADO'
           'ENVIADO MENSAGEM')
       end
       object edEstado: TEdit
-        Left = 739
+        Left = 743
         Top = 37
         Width = 217
         Height = 21
         CharCase = ecUpperCase
-        TabOrder = 6
+        TabOrder = 3
+      end
+      object memoDesc: TMemo
+        Left = 1007
+        Top = 37
+        Width = 346
+        Height = 70
+        TabOrder = 4
       end
     end
   end
@@ -1019,5 +1051,11 @@ object Form1: TForm1
       Caption = 'Ordenar por ID'
       OnClick = OrdenarporID1Click
     end
+  end
+  object OpenDialog: TOpenDialog
+    DefaultExt = 'txt'
+    Filter = 'Arquivos TXT|*.txt'
+    Left = 560
+    Top = 360
   end
 end

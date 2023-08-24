@@ -192,16 +192,6 @@ object Form1: TForm1
         TabOrder = 1
         OnClick = BitBtn4Click
       end
-      object BitBtn5: TBitBtn
-        Left = 101
-        Top = 0
-        Width = 101
-        Height = 35
-        Align = alLeft
-        Caption = '&Importar'
-        TabOrder = 4
-        ExplicitLeft = 107
-      end
       object BitBtn6: TBitBtn
         Left = 0
         Top = 0
@@ -209,9 +199,19 @@ object Form1: TForm1
         Height = 35
         Align = alLeft
         Caption = '&Relat'#243'rio'
+        TabOrder = 5
+        OnClick = BitBtn6Click
+      end
+      object BitBtn5: TBitBtn
+        Left = 101
+        Top = 0
+        Width = 101
+        Height = 35
+        Align = alLeft
+        Caption = '&Importar'
         TabOrder = 6
+        Visible = False
         OnClick = BitBtn5Click
-        ExplicitLeft = 8
       end
     end
     object GroupBox2: TGroupBox
@@ -301,11 +301,24 @@ object Form1: TForm1
         ParentFont = False
       end
       object Label4: TLabel
-        Left = 739
+        Left = 743
         Top = 15
         Width = 55
         Height = 16
         Caption = 'ESTADO:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label8: TLabel
+        Left = 1015
+        Top = 15
+        Width = 78
+        Height = 16
+        Caption = 'DESCRI'#199#195'O:'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -370,7 +383,7 @@ object Form1: TForm1
           'ENVIADO MENSAGEM')
       end
       object edEstado: TEdit
-        Left = 739
+        Left = 743
         Top = 37
         Width = 217
         Height = 21
@@ -1034,7 +1047,7 @@ object Form1: TForm1
   object OpenDialog: TOpenDialog
     DefaultExt = 'txt'
     Filter = 'Arquivos TXT|*.txt'
-    Left = 624
-    Top = 392
+    Left = 560
+    Top = 360
   end
 end

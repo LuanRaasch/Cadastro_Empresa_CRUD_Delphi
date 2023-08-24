@@ -11,6 +11,7 @@ object Form1: TForm1
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox1: TGroupBox
@@ -104,7 +105,7 @@ object Form1: TForm1
           Title.Font.Height = -11
           Title.Font.Name = 'Tahoma'
           Title.Font.Style = [fsBold]
-          Width = 205
+          Width = 181
           Visible = True
         end
         item
@@ -115,7 +116,7 @@ object Form1: TForm1
           Title.Font.Height = -11
           Title.Font.Name = 'Tahoma'
           Title.Font.Style = [fsBold]
-          Width = 339
+          Width = 191
           Visible = True
         end
         item
@@ -139,6 +140,17 @@ object Form1: TForm1
           Title.Font.Name = 'Tahoma'
           Title.Font.Style = [fsBold]
           Visible = False
+        end
+        item
+          Expanded = False
+          FieldName = 'DESCRICAO'
+          Title.Caption = 'DESCRI'#199#195'O'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -11
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = [fsBold]
+          Visible = True
         end>
     end
     object UniContainerPanel1: TUniContainerPanel
@@ -301,11 +313,24 @@ object Form1: TForm1
         ParentFont = False
       end
       object Label4: TLabel
-        Left = 739
+        Left = 743
         Top = 15
         Width = 55
         Height = 16
         Caption = 'ESTADO:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label8: TLabel
+        Left = 1007
+        Top = 15
+        Width = 78
+        Height = 16
+        Caption = 'DESCRI'#199#195'O:'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -13
@@ -328,14 +353,14 @@ object Form1: TForm1
         Width = 164
         Height = 21
         CharCase = ecUpperCase
-        TabOrder = 1
+        TabOrder = 5
       end
       object cbStatus: TComboBox
         Left = 213
-        Top = 85
+        Top = 86
         Width = 217
         Height = 21
-        TabOrder = 2
+        TabOrder = 6
         Items.Strings = (
           'E-MAIL'
           'ESC.CONTABILIDADE'
@@ -349,7 +374,7 @@ object Form1: TForm1
         Width = 217
         Height = 21
         CharCase = ecUpperCase
-        TabOrder = 3
+        TabOrder = 1
       end
       object edCidade: TEdit
         Left = 485
@@ -357,25 +382,33 @@ object Form1: TForm1
         Width = 217
         Height = 21
         CharCase = ecUpperCase
-        TabOrder = 4
+        TabOrder = 2
       end
       object cbContatado: TComboBox
         Left = 485
-        Top = 85
+        Top = 86
         Width = 217
         Height = 21
-        TabOrder = 5
+        TabOrder = 7
         Items.Strings = (
           'LIGADO'
           'ENVIADO MENSAGEM')
       end
       object edEstado: TEdit
-        Left = 739
+        Left = 743
         Top = 37
         Width = 217
         Height = 21
         CharCase = ecUpperCase
-        TabOrder = 6
+        TabOrder = 3
+      end
+      object memoDesc: TMemo
+        Left = 1007
+        Top = 37
+        Width = 346
+        Height = 70
+        MaxLength = 300
+        TabOrder = 4
       end
     end
   end
@@ -431,6 +464,11 @@ object Form1: TForm1
       FieldName = 'CONTATADO'
       Origin = 'CONTATADO'
       Size = 80
+    end
+    object TB_EMPRESA_CIDADEDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Size = 300
     end
   end
   object CONNECTION: TFDConnection
@@ -936,72 +974,6 @@ object Form1: TForm1
     UserName = 'DBPipeline'
     Left = 344
     Top = 352
-    object DBPipelineppField1: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'ID'
-      FieldName = 'ID'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 0
-    end
-    object DBPipelineppField2: TppField
-      FieldAlias = 'CIDADE'
-      FieldName = 'CIDADE'
-      FieldLength = 80
-      DisplayWidth = 80
-      Position = 1
-    end
-    object DBPipelineppField3: TppField
-      FieldAlias = 'ESTADO'
-      FieldName = 'ESTADO'
-      FieldLength = 80
-      DisplayWidth = 80
-      Position = 2
-    end
-    object DBPipelineppField4: TppField
-      FieldAlias = 'CONTATO'
-      FieldName = 'CONTATO'
-      FieldLength = 80
-      DisplayWidth = 80
-      Position = 3
-    end
-    object DBPipelineppField5: TppField
-      FieldAlias = 'STATUS'
-      FieldName = 'STATUS'
-      FieldLength = 80
-      DisplayWidth = 80
-      Position = 4
-    end
-    object DBPipelineppField6: TppField
-      FieldAlias = 'NOME_EMPRESA'
-      FieldName = 'NOME_EMPRESA'
-      FieldLength = 80
-      DisplayWidth = 80
-      Position = 5
-    end
-    object DBPipelineppField7: TppField
-      FieldAlias = 'ESTADO_ATUAL'
-      FieldName = 'ESTADO_ATUAL'
-      FieldLength = 80
-      DisplayWidth = 80
-      Position = 6
-    end
-    object DBPipelineppField8: TppField
-      FieldAlias = 'DATA'
-      FieldName = 'DATA'
-      FieldLength = 0
-      DataType = dtDate
-      DisplayWidth = 10
-      Position = 7
-    end
-    object DBPipelineppField9: TppField
-      FieldAlias = 'CONTATADO'
-      FieldName = 'CONTATADO'
-      FieldLength = 80
-      DisplayWidth = 80
-      Position = 8
-    end
   end
   object PopupMenu: TPopupMenu
     Left = 168

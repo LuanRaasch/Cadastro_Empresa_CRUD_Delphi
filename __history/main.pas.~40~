@@ -35,24 +35,9 @@ type
     BitBtn2: TBitBtn;
     BitBtn3: TBitBtn;
     BitBtn4: TBitBtn;
-    edEmpresa: TEdit;
-    edContato: TEdit;
-    edCidade: TEdit;
-    edEstado: TEdit;
-    cbStatus: TComboBox;
-    cbContatado: TComboBox;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    DateTimePicker1: TDateTimePicker;
     TB_SELECT: TFDQuery;
     Report: TppReport;
     DBPipeline: TppDBPipeline;
-    BitBtn5: TBitBtn;
     PopupMenu: TPopupMenu;
     OrdenarporNome1: TMenuItem;
     OrdenarporCidade1: TMenuItem;
@@ -84,6 +69,25 @@ type
     ppLabel8: TppLabel;
     ppLabel9: TppLabel;
     ppLine3: TppLine;
+    GroupBox2: TGroupBox;
+    Label1: TLabel;
+    DateTimePicker1: TDateTimePicker;
+    Label5: TLabel;
+    edContato: TEdit;
+    cbStatus: TComboBox;
+    Label6: TLabel;
+    edEmpresa: TEdit;
+    Label2: TLabel;
+    Label3: TLabel;
+    edCidade: TEdit;
+    cbContatado: TComboBox;
+    Label7: TLabel;
+    edEstado: TEdit;
+    Label4: TLabel;
+    OrdenarporStatus1: TMenuItem;
+    OpenDialog: TOpenDialog;
+    BitBtn6: TBitBtn;
+    BitBtn5: TBitBtn;
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn4Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -94,6 +98,9 @@ type
     procedure OrdenarporData1Click(Sender: TObject);
     procedure OrdenarporID1Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
+    procedure OrdenarporStatus1Click(Sender: TObject);
+    procedure BitBtn6Click(Sender: TObject);
+    procedure lerArquivoTxt;
   private
     { Private declarations }
   public
@@ -135,6 +142,11 @@ begin
   if TB_SELECT.RecordCount > 0 then
     begin
       ShowMessage('ATENÇÃO! Empresa já cadastrada.');
+
+    end
+  else if edEmpresa.Text = EmptyStr then
+    begin
+      ShowMessage('ATENÇÃO! Insira o nome da Empresa!.');
       Exit;
     end
   else
@@ -184,6 +196,11 @@ end;
 
 procedure TForm1.BitBtn5Click(Sender: TObject);
 begin
+  lerArquivoTxt;
+end;
+
+procedure TForm1.BitBtn6Click(Sender: TObject);
+begin
   Report.Print;
 end;
 
@@ -230,6 +247,39 @@ begin
     TB_EMPRESA_CIDADE.SQL.Clear;
     TB_EMPRESA_CIDADE.SQL.Text := 'select * from EMPRESA_CONTATO ' + _orderBy;
   TB_EMPRESA_CIDADE.Open;
+end;
+
+procedure TForm1.OrdenarporStatus1Click(Sender: TObject);
+begin
+  _orderBy := 'order by status';
+  TB_EMPRESA_CIDADE.Close;
+    TB_EMPRESA_CIDADE.SQL.Clear;
+    TB_EMPRESA_CIDADE.SQL.Text := 'select * from EMPRESA_CONTATO ' + _orderBy;
+  TB_EMPRESA_CIDADE.Open;
+end;
+
+procedure TForm1.lerArquivoTxt;
+var
+TEXTO : TextFile;
+LINHA : String;
+tam, postab:integer;
+begin
+  Opendialog.Execute;
+  Opendialog.Title := 'FAVOR SELECIONAR O ARQUIVO';
+  AssignFile(TEXTO,Opendialog.FileName);
+  Reset(TEXTO);
+  while not Eof(TEXTO) do
+    begin
+      LINHA := '';
+
+      ReadLn(TEXTO,LINHA);
+
+      if LINHA <> '' then
+      begin
+        tam := length(LINHA);
+        postab := pos(#9,LINHA);
+      end;
+    end;
 end;
 
 end.

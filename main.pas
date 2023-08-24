@@ -88,6 +88,9 @@ type
     OpenDialog: TOpenDialog;
     BitBtn6: TBitBtn;
     BitBtn5: TBitBtn;
+    Label8: TLabel;
+    memoDesc: TMemo;
+    TB_EMPRESA_CIDADEDESCRICAO: TStringField;
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn4Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -101,6 +104,7 @@ type
     procedure OrdenarporStatus1Click(Sender: TObject);
     procedure BitBtn6Click(Sender: TObject);
     procedure lerArquivoTxt;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -161,6 +165,7 @@ begin
             TB_EMPRESA_CIDADECONTATO.AsString       := edContato.Text;
             TB_EMPRESA_CIDADESTATUS.AsString        := cbStatus.Text;
             TB_EMPRESA_CIDADECONTATADO.AsString     := cbContatado.Text;
+            TB_EMPRESA_CIDADEDESCRICAO.AsString     := memoDesc.Text;
       
           TB_EMPRESA_CIDADE.Post;
          Except on Exception do
@@ -202,6 +207,11 @@ end;
 procedure TForm1.BitBtn6Click(Sender: TObject);
 begin
   Report.Print;
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+  edEmpresa.SetFocus;
 end;
 
 procedure TForm1.OrdenarporCidade1Click(Sender: TObject);

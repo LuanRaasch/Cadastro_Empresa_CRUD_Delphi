@@ -38,7 +38,6 @@ type
     TB_SELECT: TFDQuery;
     Report: TppReport;
     DBPipeline: TppDBPipeline;
-    BitBtn5: TBitBtn;
     PopupMenu: TPopupMenu;
     OrdenarporNome1: TMenuItem;
     OrdenarporCidade1: TMenuItem;
@@ -86,6 +85,12 @@ type
     edEstado: TEdit;
     Label4: TLabel;
     OrdenarporStatus1: TMenuItem;
+    OpenDialog: TOpenDialog;
+    BitBtn6: TBitBtn;
+    BitBtn5: TBitBtn;
+    Label8: TLabel;
+    memoDesc: TMemo;
+    TB_EMPRESA_CIDADEDESCRICAO: TStringField;
     procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn4Click(Sender: TObject);
     procedure BitBtn1Click(Sender: TObject);
@@ -97,6 +102,9 @@ type
     procedure OrdenarporID1Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
     procedure OrdenarporStatus1Click(Sender: TObject);
+    procedure BitBtn6Click(Sender: TObject);
+    procedure lerArquivoTxt;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -138,6 +146,11 @@ begin
   if TB_SELECT.RecordCount > 0 then
     begin
       ShowMessage('ATENÇÃO! Empresa já cadastrada.');
+
+    end
+  else if edEmpresa.Text = EmptyStr then
+    begin
+      ShowMessage('ATENÇÃO! Insira o nome da Empresa!.');
       Exit;
     end
   else
@@ -187,7 +200,17 @@ end;
 
 procedure TForm1.BitBtn5Click(Sender: TObject);
 begin
+  lerArquivoTxt;
+end;
+
+procedure TForm1.BitBtn6Click(Sender: TObject);
+begin
   Report.Print;
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+  edEmpresa.SetFocus;
 end;
 
 procedure TForm1.OrdenarporCidade1Click(Sender: TObject);
@@ -242,6 +265,30 @@ begin
     TB_EMPRESA_CIDADE.SQL.Clear;
     TB_EMPRESA_CIDADE.SQL.Text := 'select * from EMPRESA_CONTATO ' + _orderBy;
   TB_EMPRESA_CIDADE.Open;
+end;
+
+procedure TForm1.lerArquivoTxt;
+var
+TEXTO : TextFile;
+LINHA : String;
+tam, postab:integer;
+begin
+  Opendialog.Execute;
+  Opendialog.Title := 'FAVOR SELECIONAR O ARQUIVO';
+  AssignFile(TEXTO,Opendialog.FileName);
+  Reset(TEXTO);
+  while not Eof(TEXTO) do
+    begin
+      LINHA := '';
+
+      ReadLn(TEXTO,LINHA);
+
+      if LINHA <> '' then
+      begin
+        tam := length(LINHA);
+        postab := pos(#9,LINHA);
+      end;
+    end;
 end;
 
 end.
